@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="th">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#182522">
+    <title>บัญชีของฉัน | IPASS</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="motion.css">
+    <link rel="stylesheet" href="account.css">
+    <script type="module" src="account.js"></script>
+</head>
+
+<body class="account-page">
+    <header class="topbar">
+        <div class="topbar-start">
+            <a class="brand" href="./" aria-label="กลับหน้าหลัก IPASS">
+                <span class="brand-mark">i</span>
+                <span class="brand-name">IPASS <small>EXAM ROOM</small></span>
+            </a>
+        </div>
+        <div class="topbar-right">
+            <span id="accountGreeting" class="auth-greeting"></span>
+            <a class="auth-button account-back" href="./">กลับหน้าสอบ</a>
+            <button id="accountLogout" class="auth-button" type="button">ออกจากระบบ</button>
+        </div>
+    </header>
+
+    <main class="account-main">
+        <header class="account-page-heading">
+            <p class="eyebrow">ACCOUNT</p>
+            <h1>จัดการบัญชี</h1>
+            <p id="accountEmail" class="account-email"></p>
+            <p id="accountCreated" class="account-meta"></p>
+        </header>
+
+        <div class="account-grid">
+            <section class="account-section" aria-labelledby="profileHeading">
+                <div class="account-section-heading">
+                    <p class="eyebrow">PROFILE</p>
+                    <h2 id="profileHeading">ข้อมูลบัญชี</h2>
+                </div>
+                <form id="profileForm" class="account-form" novalidate>
+                    <label class="account-field">
+                        ชื่อที่แสดง
+                        <input id="profileName" name="name" type="text" autocomplete="name" maxlength="60" required>
+                    </label>
+                    <label class="account-field">
+                        อีเมล
+                        <input id="profileEmail" name="email" type="email" autocomplete="email" maxlength="254"
+                            required>
+                    </label>
+                    <label class="account-field">
+                        รหัสผ่านปัจจุบัน
+                        <input id="profileCurrentPassword" name="currentPassword" type="password"
+                            autocomplete="current-password" minlength="8" maxlength="128" required>
+                    </label>
+                    <p id="profileMessage" class="account-message" role="status" aria-live="polite"></p>
+                    <button class="account-submit" type="submit">บันทึกข้อมูล</button>
+                </form>
+            </section>
+
+            <section class="account-section" aria-labelledby="passwordHeading">
+                <div class="account-section-heading">
+                    <p class="eyebrow">SECURITY</p>
+                    <h2 id="passwordHeading">เปลี่ยนรหัสผ่าน</h2>
+                </div>
+                <form id="passwordForm" class="account-form" novalidate>
+                    <label class="account-field">
+                        รหัสผ่านปัจจุบัน
+                        <input id="currentPassword" name="currentPassword" type="password"
+                            autocomplete="current-password" minlength="8" maxlength="128" required>
+                    </label>
+                    <label class="account-field">
+                        รหัสผ่านใหม่
+                        <input id="newPassword" name="newPassword" type="password" autocomplete="new-password"
+                            minlength="8" maxlength="128" required>
+                    </label>
+                    <p id="passwordMessage" class="account-message" role="status" aria-live="polite"></p>
+                    <button class="account-submit" type="submit">เปลี่ยนรหัสผ่าน</button>
+                </form>
+            </section>
+
+            <section class="account-section account-section-wide" aria-labelledby="subjectAnalysisHeading">
+                <div class="account-section-heading">
+                    <p class="eyebrow">SUBJECT INSIGHTS</p>
+                    <h2 id="subjectAnalysisHeading">ภาพรวมรายวิชา</h2>
+                </div>
+                <p id="subjectAnalysisMessage" class="account-analysis-message" role="status" aria-live="polite"></p>
+                <div id="subjectAnalysisList" class="subject-analysis-list"></div>
+            </section>
+
+            <section class="account-section account-section-wide" aria-labelledby="historyHeading">
+                <div class="account-section-heading history-heading">
+                    <div>
+                        <p class="eyebrow">ACTIVITY</p>
+                        <h2 id="historyHeading">ประวัติการสอบ</h2>
+                    </div>
+                    <button id="clearHistory" class="clear-history" type="button" disabled>ล้างประวัติ</button>
+                </div>
+                <p id="historyMessage" class="account-message" role="status" aria-live="polite"></p>
+                <div id="attemptList" class="attempt-list" aria-live="polite">
+                    <p class="history-empty">กำลังโหลดประวัติ...</p>
+                </div>
+            </section>
+
+            <section class="account-section account-section-wide danger-section" aria-labelledby="deleteAccountHeading">
+                <div class="account-section-heading">
+                    <p class="eyebrow">ACCOUNT CONTROL</p>
+                    <h2 id="deleteAccountHeading">ลบบัญชี</h2>
+                </div>
+                <form id="deleteAccountForm" class="account-form" novalidate>
+                    <label class="account-field">
+                        ยืนยันด้วยรหัสผ่านปัจจุบัน
+                        <input id="deleteAccountPassword" type="password" autocomplete="current-password" minlength="8"
+                            maxlength="128" required>
+                    </label>
+                    <p id="deleteAccountMessage" class="account-message" role="status" aria-live="polite"></p>
+                    <button class="danger-submit" type="submit">ลบบัญชีและประวัติทั้งหมด</button>
+                </form>
+            </section>
+        </div>
+    </main>
+</body>
+
+</html>

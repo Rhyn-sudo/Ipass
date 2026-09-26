@@ -1,0 +1,383 @@
+.account-page {
+    min-height: 100vh;
+    height: auto;
+    overflow: auto;
+}
+
+.account-page .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
+
+.account-page .account-back {
+    text-decoration: none;
+}
+
+.account-main {
+    width: min(100%, 1100px);
+    margin: 0 auto;
+    padding: 42px clamp(18px, 4vw, 52px) 64px;
+}
+
+.account-page-heading {
+    margin-bottom: 26px;
+}
+
+.account-page-heading .eyebrow,
+.account-section-heading .eyebrow {
+    color: var(--red);
+}
+
+.account-page-heading h1 {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: 36px;
+    font-weight: 500;
+}
+
+.account-email {
+    margin: 8px 0 0;
+    color: var(--ink-soft);
+    font-size: 12px;
+}
+
+.account-meta {
+    margin: 5px 0 0;
+    color: #87938a;
+    font-size: 10px;
+}
+
+.account-analysis-message {
+    margin: -6px 0 10px;
+}
+
+.account-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.account-section {
+    min-width: 0;
+    padding: 22px;
+    border: 1px solid var(--line);
+    background: #fff;
+}
+
+.account-section-wide {
+    grid-column: 1 / -1;
+}
+
+.account-section-heading {
+    margin-bottom: 18px;
+}
+
+.account-section-heading .eyebrow {
+    margin-bottom: 5px;
+}
+
+.account-section-heading h2 {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.account-form {
+    display: grid;
+    gap: 12px;
+}
+
+.account-field {
+    display: grid;
+    gap: 6px;
+    color: var(--ink-soft);
+    font-size: 10px;
+}
+
+.account-field input {
+    width: 100%;
+    min-height: 42px;
+    padding: 0 11px;
+    border: 1px solid var(--line-strong);
+    border-radius: 0;
+    outline: 0;
+    color: var(--ink);
+    background: #fff;
+    font-size: 13px;
+}
+
+.account-field input:focus {
+    border-color: var(--green-dark);
+    box-shadow: 0 0 0 2px #35532a1a;
+}
+
+.account-message {
+    min-height: 18px;
+    margin: 0;
+    color: var(--red);
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.account-message.is-success {
+    color: var(--green-dark);
+}
+
+.account-submit {
+    min-height: 40px;
+    padding: 0 14px;
+    border: 0;
+    color: #fff;
+    background: var(--ink);
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.account-submit:hover {
+    background: #2c3b35;
+}
+
+.account-submit:disabled,
+.clear-history:disabled {
+    opacity: 0.55;
+    cursor: wait;
+}
+
+.history-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 10px;
+}
+
+.clear-history,
+.delete-attempt {
+    min-height: 32px;
+    padding: 0 10px;
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+    background: #fff;
+    cursor: pointer;
+    font-size: 10px;
+}
+
+.clear-history:not(:disabled):hover,
+.delete-attempt:hover {
+    border-color: var(--red);
+    color: var(--red);
+}
+
+.attempt-list {
+    border-top: 1px solid var(--line);
+}
+
+.attempt-row {
+    display: grid;
+    grid-template-columns: minmax(180px, 1fr) auto minmax(145px, auto) auto;
+    align-items: center;
+    gap: 18px;
+    padding: 14px 4px;
+    border-bottom: 1px solid var(--line);
+}
+
+.attempt-answer-details,
+.attempt-details-unavailable {
+    grid-column: 1 / -1;
+    margin: 0;
+}
+
+.attempt-details-unavailable {
+    color: #87938a;
+    font-size: 10px;
+}
+
+.attempt-answer-details>summary {
+    width: fit-content;
+    color: var(--green-dark);
+    cursor: pointer;
+    font-size: 10px;
+    list-style-position: inside;
+}
+
+.attempt-answer-list {
+    display: grid;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.attempt-answer-item {
+    padding: 12px;
+    border-left: 2px solid var(--line-strong);
+    background: #f7f8f5;
+}
+
+.attempt-answer-item.is-correct {
+    border-left-color: #6a9e46;
+}
+
+.attempt-answer-item.is-wrong {
+    border-left-color: var(--red);
+}
+
+.attempt-answer-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #7c8980;
+    font: 9px var(--mono);
+}
+
+.attempt-answer-heading strong {
+    color: var(--ink);
+}
+
+.attempt-answer-status {
+    margin-left: auto;
+    color: var(--red);
+}
+
+.attempt-answer-item.is-correct .attempt-answer-status {
+    color: var(--green-dark);
+}
+
+.attempt-answer-prompt {
+    margin: 8px 0;
+    font-size: 11px;
+    line-height: 1.8;
+    white-space: pre-line;
+}
+
+.attempt-answer-value,
+.attempt-answer-explanation {
+    margin: 5px 0 0;
+    color: var(--ink-soft);
+    font-size: 10px;
+    line-height: 1.8;
+    white-space: pre-line;
+}
+
+.attempt-answer-value strong {
+    color: var(--ink);
+}
+
+.attempt-answer-image,
+.attempt-question-image {
+    display: block;
+    max-width: min(100%, 420px);
+    max-height: 150px;
+    margin-top: 7px;
+    object-fit: contain;
+    object-position: left center;
+}
+
+.attempt-answer-explanation {
+    padding-top: 7px;
+    border-top: 1px solid var(--line);
+}
+
+.attempt-title {
+    margin: 0;
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.6;
+}
+
+.attempt-details,
+.attempt-date {
+    margin: 4px 0 0;
+    color: var(--ink-soft);
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+.attempt-score {
+    color: var(--red);
+    font: 18px var(--mono);
+    white-space: nowrap;
+}
+
+.attempt-score.is-pass {
+    color: var(--green-dark);
+}
+
+.history-empty {
+    margin: 0;
+    padding: 22px 4px;
+    color: #87938a;
+    font-size: 12px;
+}
+
+.danger-section {
+    border-color: #e9cbc3;
+}
+
+.danger-submit {
+    min-height: 40px;
+    padding: 0 14px;
+    border: 0;
+    color: #fff;
+    background: var(--red);
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.danger-submit:hover {
+    background: #a93e2c;
+}
+
+.danger-submit:disabled {
+    opacity: 0.55;
+    cursor: wait;
+}
+
+@media (max-width: 700px) {
+    .account-main {
+        padding: 30px 14px 44px;
+    }
+
+    .account-page-heading h1 {
+        font-size: 30px;
+    }
+
+    .account-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .account-section-wide {
+        grid-column: auto;
+    }
+
+    .account-section {
+        padding: 18px 15px;
+    }
+
+    .attempt-row {
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 6px 12px;
+    }
+
+    .attempt-score {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .attempt-date {
+        grid-column: 1;
+    }
+
+    .attempt-answer-details,
+    .attempt-details-unavailable {
+        grid-column: 1 / -1;
+    }
+
+    .delete-attempt {
+        grid-column: 2;
+        grid-row: 2;
+    }
+}

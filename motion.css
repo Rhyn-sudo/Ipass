@@ -1,0 +1,290 @@
+:root {
+    --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --motion-fast: 160ms;
+    --motion-medium: 280ms;
+}
+
+.topbar {
+    animation: topbar-enter 420ms var(--motion-ease) both;
+}
+
+.topbar-start {
+    animation: menu-enter 340ms var(--motion-ease) 70ms both;
+}
+
+.brand-mark {
+    animation: mark-enter 520ms var(--motion-ease) 100ms both;
+}
+
+.live-dot {
+    animation: status-pulse 1.1s ease-in-out 500ms 2;
+}
+
+.workspace {
+    transition: grid-template-columns var(--motion-medium) var(--motion-ease);
+}
+
+.workspace.library-collapsed {
+    grid-template-columns: 0 minmax(0, 1fr);
+}
+
+#libraryPanel {
+    overflow: hidden;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 180ms ease, padding var(--motion-medium) var(--motion-ease), border-width var(--motion-medium) ease;
+    animation: sidebar-enter 460ms var(--motion-ease) 80ms both;
+}
+
+.workspace.library-collapsed #libraryPanel {
+    padding-left: 0;
+    padding-right: 0;
+    border-right-width: 0;
+    opacity: 0;
+    visibility: visible;
+    pointer-events: none;
+    transition: opacity 150ms ease, padding var(--motion-medium) var(--motion-ease), border-width var(--motion-medium) ease;
+}
+
+.library-toggle,
+.library-toggle span,
+.set-button,
+.option-button,
+.button,
+.finish-button,
+.pdf-library a {
+    transition-duration: var(--motion-fast);
+    transition-timing-function: ease;
+}
+
+.library-toggle span {
+    transform: rotate(0);
+    transition: transform var(--motion-medium) var(--motion-ease);
+}
+
+.library-toggle.is-collapsed span {
+    transform: rotate(90deg);
+}
+
+.set-group {
+    animation: menu-enter 300ms var(--motion-ease) both;
+}
+
+.set-group:nth-child(2) {
+    animation-delay: 35ms;
+}
+
+.set-group:nth-child(3) {
+    animation-delay: 70ms;
+}
+
+.set-group:nth-child(4) {
+    animation-delay: 105ms;
+}
+
+.set-group:nth-child(5) {
+    animation-delay: 140ms;
+}
+
+.set-button:hover,
+.pdf-library a:hover {
+    color: var(--green-dark);
+}
+
+.option-button {
+    box-shadow: 0 0 0 transparent;
+    transition-property: border-color, background-color, box-shadow;
+}
+
+.option-button:hover {
+    border-color: #8fa08f;
+    box-shadow: 0 2px 8px #1825220b;
+}
+
+.option-button:active,
+.button:active,
+.finish-button:active,
+.library-toggle:active {
+    transform: scale(0.985);
+}
+
+.library-toggle:focus-visible,
+.set-button:focus-visible,
+.option-button:focus-visible,
+.button:focus-visible,
+.finish-button:focus-visible {
+    outline: 2px solid var(--green-dark);
+    outline-offset: 2px;
+}
+
+.progress-track span {
+    transition: width 360ms var(--motion-ease);
+}
+
+.question-image img,
+.option-image {
+    animation: image-enter 300ms var(--motion-ease) both;
+}
+
+.answer-feedback:not([hidden]) {
+    animation: feedback-enter 260ms var(--motion-ease) both;
+}
+
+.result-view {
+    animation: arrive 320ms var(--motion-ease) both;
+}
+
+.review-item:nth-child(-n+8) {
+    animation: menu-enter 320ms var(--motion-ease) both;
+}
+
+.review-item:nth-child(2) {
+    animation-delay: 30ms;
+}
+
+.review-item:nth-child(3) {
+    animation-delay: 60ms;
+}
+
+.review-item:nth-child(4) {
+    animation-delay: 90ms;
+}
+
+.review-item:nth-child(5) {
+    animation-delay: 120ms;
+}
+
+.review-item:nth-child(6) {
+    animation-delay: 150ms;
+}
+
+.review-item:nth-child(7) {
+    animation-delay: 180ms;
+}
+
+.review-item:nth-child(8) {
+    animation-delay: 210ms;
+}
+
+.finish-button {
+    transition-property: background-color, box-shadow, transform;
+}
+
+.finish-button:hover {
+    box-shadow: 0 3px 12px #c84e3730;
+}
+
+@keyframes topbar-enter {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes sidebar-enter {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes menu-enter {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes feedback-enter {
+    from {
+        opacity: 0;
+        transform: translateY(7px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes image-enter {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes mark-enter {
+    from {
+        opacity: 0;
+        transform: scale(0.75) rotate(-12deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
+
+@keyframes status-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 4px #a9d95a20;
+    }
+
+    50% {
+        box-shadow: 0 0 0 7px #a9d95a08;
+    }
+}
+
+@media (max-width: 620px) {
+    .workspace {
+        grid-template-rows: auto minmax(0, 1fr);
+        transition: grid-template-rows var(--motion-medium) var(--motion-ease);
+    }
+
+    .workspace.library-collapsed {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: 0 minmax(0, 1fr);
+    }
+
+    .workspace.library-collapsed #libraryPanel {
+        min-height: 0;
+        height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        border-bottom-width: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-delay: 0ms !important;
+        transition-duration: 0.01ms !important;
+        transition-delay: 0ms !important;
+    }
+}

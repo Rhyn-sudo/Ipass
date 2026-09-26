@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="th">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#182522">
+    <title>IPASS | ห้องสอบจำลอง</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="motion.css">
+    <script type="module" src="app.js"></script>
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="topbar-start">
+            <button id="libraryToggle" class="library-toggle" type="button" aria-label="ซ่อนเมนูชุดข้อสอบ"
+                aria-expanded="true" aria-controls="libraryPanel" title="ซ่อนเมนูชุดข้อสอบ">
+                <span aria-hidden="true">☰</span>
+            </button>
+            <a class="brand" href="./" aria-label="IPASS หน้าหลัก">
+                <span class="brand-mark">i</span>
+                <span class="brand-name">IPASS <small>EXAM ROOM</small></span>
+            </a>
+        </div>
+        <div class="topbar-right">
+            <div class="topbar-note"><span class="live-dot"></span> คลังข้อสอบพร้อมใช้งาน</div>
+            <span id="authGreeting" class="auth-greeting" hidden></span>
+            <a id="accountLink" class="auth-button account-link" href="account.html" hidden>บัญชีของฉัน</a>
+            <button id="authButton" class="auth-button" type="button">เข้าสู่ระบบ</button>
+            <button id="logoutButton" class="auth-button" type="button" hidden>ออกจากระบบ</button>
+        </div>
+    </header>
+
+    <div class="workspace">
+        <aside id="libraryPanel" class="library" aria-label="คลังชุดข้อสอบ" aria-hidden="false">
+            <div class="library-heading">
+                <p class="eyebrow">เลือกชุดฝึก</p>
+                <h1>คลังข้อสอบ</h1>
+            </div>
+            <label class="search-box" for="setSearch">
+                <span aria-hidden="true">⌕</span>
+                <input id="setSearch" type="search" placeholder="ค้นหาปีหรือชุดสอบ" autocomplete="off">
+                <kbd>/</kbd>
+            </label>
+            <div id="setGroups" class="set-groups" aria-live="polite">
+                <p class="loading-note">กำลังเปิดคลังข้อสอบ...</p>
+            </div>
+            <section class="pdf-library" aria-label="เอกสารข้อสอบ科目 B">
+                <h2>科目 B <span>PDF</span></h2>
+                <a href="kamokuB/2025B.pdf" target="_blank" rel="noopener">2025年度 <span>↗</span></a>
+                <a href="kamokuB/2024B.pdf" target="_blank" rel="noopener">2024年度 <span>↗</span></a>
+                <a href="kamokuB/2023B.pdf" target="_blank" rel="noopener">2023年度 <span>↗</span></a>
+                <a href="kamokuB/sampleB.pdf" target="_blank" rel="noopener">サンプル問題 <span>↗</span></a>
+            </section>
+            <div class="library-footer">
+                <span class="footer-rule"></span>
+                <span>基本情報技術者試験</span>
+                <span>ชุดฝึกและข้อสอบย้อนหลัง</span>
+            </div>
+        </aside>
+
+        <main class="exam-area">
+            <div class="exam-heading">
+                <div>
+                    <p id="setEyebrow" class="eyebrow">เริ่มต้น</p>
+                    <h2 id="setTitle">กำลังโหลดข้อสอบ</h2>
+                    <p id="setDescription" class="set-description">เตรียมชุดข้อสอบของคุณ</p>
+                </div>
+                <label class="shuffle-control">
+                    <input id="shuffleToggle" type="checkbox">
+                    <span class="switch" aria-hidden="true"></span>
+                    <span>สุ่มข้อ</span>
+                </label>
+            </div>
+
+            <section id="quizPanel" class="quiz-panel" aria-label="พื้นที่ทำข้อสอบ">
+                <div class="quiz-toolbar">
+                    <span id="questionPosition" class="question-position">ข้อ -- / --</span>
+                    <span id="answeredCount" class="answered-count">ตอบแล้ว 0 ข้อ</span>
+                </div>
+                <div class="progress-track" role="progressbar" aria-label="ความคืบหน้า" aria-valuemin="0"
+                    aria-valuemax="100" aria-valuenow="0">
+                    <span id="progressBar"></span>
+                </div>
+
+                <div id="questionStage" class="question-stage">
+                    <div class="question-kicker"><span id="questionNumber">01</span><span>QUESTION</span></div>
+                    <h3 id="questionText" class="question-text">กำลังอ่านข้อมูล...</h3>
+                    <figure id="questionImage" class="question-image" hidden>
+                        <img alt="ภาพประกอบโจทย์">
+                    </figure>
+                    <fieldset id="answerOptions" class="answer-options">
+                        <legend class="visually-hidden">เลือกคำตอบ</legend>
+                    </fieldset>
+                    <div id="answerFeedback" class="answer-feedback" role="status" aria-live="polite" hidden>
+                        <p class="feedback-result"></p>
+                        <p class="feedback-answer"></p>
+                        <p class="feedback-explanation"></p>
+                    </div>
+                </div>
+
+                <div class="quiz-navigation">
+                    <button id="previousButton" class="button button-quiet" type="button">←
+                        <span>ข้อก่อนหน้า</span></button>
+                    <span id="selectionHint" class="selection-hint">เลือกคำตอบเพื่อบันทึก</span>
+                    <button id="nextButton" class="button button-dark" type="button"><span>ข้อถัดไป</span> →</button>
+                </div>
+            </section>
+
+            <div class="exam-bottom">
+                <p>เลือกคำตอบเพื่อดูเฉลยและคำอธิบายได้ทันที</p>
+                <button id="finishButton" class="finish-button" type="button">ส่งคำตอบ <span
+                        aria-hidden="true">↗</span></button>
+            </div>
+            <div id="statusMessage" class="status-message" role="status" aria-live="polite"></div>
+        </main>
+    </div>
+    <dialog id="authDialog" class="auth-dialog" aria-labelledby="authHeading">
+        <button id="authClose" class="auth-close" type="button" aria-label="ปิดหน้าต่าง">×</button>
+        <p class="eyebrow">IPASS ACCOUNT</p>
+        <h2 id="authHeading">เข้าสู่ระบบ</h2>
+        <p id="authIntro" class="auth-intro">เข้าสู่ระบบเพื่อใช้บัญชีของคุณ</p>
+        <div class="auth-modes" role="group" aria-label="ประเภทบัญชี">
+            <button class="auth-mode" type="button" data-auth-mode="login" aria-pressed="true">เข้าสู่ระบบ</button>
+            <button class="auth-mode" type="button" data-auth-mode="register" aria-pressed="false">สร้างบัญชี</button>
+        </div>
+        <form id="authForm" class="auth-form" novalidate>
+            <label id="authNameField" class="auth-field" hidden>
+                ชื่อที่แสดง
+                <input id="authName" name="name" type="text" autocomplete="name" maxlength="60">
+            </label>
+            <label class="auth-field">
+                อีเมล
+                <input id="authEmail" name="email" type="email" autocomplete="email" maxlength="254" required>
+            </label>
+            <label class="auth-field">
+                รหัสผ่าน
+                <input id="authPassword" name="password" type="password" autocomplete="current-password" minlength="8"
+                    maxlength="128" required>
+            </label>
+            <p id="authMessage" class="auth-message" role="status" aria-live="polite"></p>
+            <button id="authSubmit" class="auth-submit" type="submit">เข้าสู่ระบบ</button>
+        </form>
+    </dialog>
+</body>
+
+</html>
